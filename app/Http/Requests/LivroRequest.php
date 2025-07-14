@@ -22,10 +22,10 @@ class LivroRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'titulo' => ['required', 'min:3', 'max:150', 'unique:livros,titulo'],
+            'titulo' => ['required', 'min:3', 'max:150', 'unique:livro,titulo'],
             'autor' => ['required', 'min:3', 'max:150', 'string'],
             // 'ibsn' => ['required', 'regex:/^(?:\d{9}[\dXx]|\d{13})$/'],
-            'ano' => ['required', 'digits:4', 'integer', 'after_or_equal:1500', 'before_or_equal:' . date('Y')],
+            'ano' => ['required', 'after_or_equal:1500', 'before_or_equal:' . date('Y')],
             'quantidade' => ['required', 'min:3', 'max:100', 'integer']
 
         ];

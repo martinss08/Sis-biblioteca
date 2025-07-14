@@ -9,6 +9,13 @@ Route::get('/', function () {
     return Inertia::render('Login');
 });
 
+Route::get('/home', function () {
+    return Inertia::render('Home');
+});
+Route::get('/header', function () {
+    return Inertia::render('Header');
+});
+
 Route::resource('/user', UserController::class);
 // Route::post('/user', [UserController::class, 'create']); 
 

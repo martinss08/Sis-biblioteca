@@ -1,6 +1,6 @@
 <template>
     <!-- oi -->
-  <div class="container">
+  <div class="container_livro">
     <h1>Cadastro de livro</h1>
 
     <form @submit.prevent="submit">
@@ -24,8 +24,8 @@
         />
       </div>
       <div class="invalid-feedback" v-if="form.errors.autor">
-          {{ form.errors.autor }}
-        </div>
+        {{ form.errors.autor }}
+      </div>
 
       <div class="box">
         <label for="isbn">ISBN</label>
@@ -36,20 +36,20 @@
 
       </div>
       <div class="invalid-feedback" v-if="form.errors.isbn">
-          {{ form.errors.isbn }}
-        </div>
+        {{ form.errors.isbn }}
+      </div>
 
       <div class="box menor">
         <label for="ano">Ano de Publicação</label>
-        <input v-model="form.ano" type="date" id="ano" 
+        <input v-model="form.ano" type="number" id="ano" min="1500" placeholder="dd/mm/aaaa"
           class="form-control data"
           :class="{ 'is-invalid': form.errors.ano }"
         />
 
       </div>
       <div class="invalid-feedback" v-if="form.errors.ano">
-          {{ form.errors.ano }}
-        </div>
+        {{ form.errors.ano }}
+      </div>
 
       <div class="box menor">
         <label for="quantidade">Qtd. em Estoque</label>
@@ -60,8 +60,8 @@
         
       </div>
       <div class="invalid-feedback" v-if="form.errors.quantidade">
-          {{ form.errors.quantidade }}
-        </div>
+        {{ form.errors.quantidade }}
+      </div>
     
       <div class="btn">
         <button type="submit" :disabled="form.processing" >
@@ -69,7 +69,6 @@
         </button>
       </div>
     </form>
-
     
   </div>
 </template>
@@ -104,7 +103,7 @@ const errors = form.errors
   box-sizing: border-box;
 }
 
-    .container {
+    .container_livro {
       display: flex;
       width: 500px;
       /* height: 530px; */
@@ -117,7 +116,7 @@ const errors = form.errors
         
     }
 
-    .container h1 {
+    .container_livro h1 {
       font-family: Arial, Helvetica, sans-serif;
       text-align: center;
       margin: 1rem 0 2rem 0;
@@ -170,6 +169,11 @@ const errors = form.errors
 
     input.is-invalid {
       border-bottom: 1px solid #dc3545 !important;
+    }
+    .invalid-feedback {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #dc3545;
+      font-size: .6rem;
     }
      
     .box.menor {

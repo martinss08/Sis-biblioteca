@@ -23,7 +23,7 @@ class LivroController extends Controller
 
     public function create()
     {
-        return Inertia::render('Livro');
+        return Inertia::render('CreateLivro');
 
     }
     public function store(LivroRequest $request) 
