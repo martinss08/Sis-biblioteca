@@ -6,6 +6,7 @@ use App\Http\Requests\LivroRequest;
 use App\Models\Livro;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Log;
 
 class LivroController extends Controller
 {
@@ -18,7 +19,11 @@ class LivroController extends Controller
 
     public function index()
     {
-        dd('index');
+        $livros = $this->model->all();
+
+        return Inertia::render('/Home', [
+            'livros' => $livros,
+        ]);
     }
 
     public function create()
@@ -28,11 +33,14 @@ class LivroController extends Controller
     }
     public function store(LivroRequest $request) 
     {
-        $dados = $request->validate();
-
+        // dd('chegou');
+        $dados = $request->validated();
+        
         Livro::create($dados);
+        // return response()->json(['status' => 'chegou']);
 
-        dd("store");
+        //Criar aquela mss de sucesso ao criar um livro 
+        return Inertia::render('Home');
     }
 
 

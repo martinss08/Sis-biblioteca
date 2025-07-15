@@ -21,4 +21,4 @@ Route::resource('/user', UserController::class);
 
 Route::resource('/livro', LivroController::class);
 Route::get('/livro/create', [LivroController::class, 'create'])->name('livros.create');
-Route::post('/livro/store', [LivroController::class, 'store'])->name('livros.store');
+Route::post('/livro/store', [LivroController::class, 'store']);

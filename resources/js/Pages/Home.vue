@@ -2,9 +2,9 @@
     <Header />
     <div class="box-bsc">
         <div class="busca">
-            <form action="">
-                <input type="text" placeholder="Buscar um livro">
-                <button type="submit">
+            <form class="form" action="">
+                <input class="intTxt" type="text" placeholder="Buscar um livro">
+                <button class="intBtn" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
             </form>
@@ -14,21 +14,23 @@
         <h1>Catalogo de Livro</h1>
         <div class="container_main">
             <div class="box_card">
-                <div class="cards">
-                    <div class="card_img">
-                        <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
+                <!-- @foreach($livros as $livro) -->
+                    <div class="cards" v-for="livro in livros" :key="livros.id">
+                        <div class="card_img">
+                            <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
+                        </div>
+                        <div class="card_title">
+                            <h3>{{ livro.titulo }}</h3>
+                            <p>
+                                <span>descrição:</span>
+                                Lorem ipsum dolor sit amet
+                            </p>
+                        </div>
+                        <div class="card_btn">
+                            <button>Saber mais</button>
+                        </div>
                     </div>
-                    <div class="card_title">
-                        <h3>Cavalinho 123</h3>
-                        <p>
-                            <span>descrição:</span>
-                            Lorem ipsum dolor sit amet
-                        </p>
-                    </div>
-                    <div class="card_btn">
-                        <button>Saber mais</button>
-                    </div>
-                </div>
+                <!-- @end -->
                 <div class="cards">
                     <div class="card_img">
                         <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
@@ -156,7 +158,7 @@ import Header from '@/Components/Header.vue'
         
     }
     
-    form {
+    .form {
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -167,13 +169,13 @@ import Header from '@/Components/Header.vue'
         border-radius: .6rem;
         margin: 10px 20px;
     }
-    form input[type="text"] {
+    .form .intTxt {
         /* border: 1px solid #8080807c; */
         border-radius:.8rem;
         width: 210px;
         margin-right:10px ;
     }
-    form button {
+    .form .intBtn {
         border: none;
         /* border: 1px solid #8080807c; */
         background-color: transparent;
@@ -182,7 +184,7 @@ import Header from '@/Components/Header.vue'
         height: 30px;
         border-radius: .5rem;
     }
-    form button i {
+    .form .intBtn i {
         font-size: 1rem;
     }
 

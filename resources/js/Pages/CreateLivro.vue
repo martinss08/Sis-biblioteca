@@ -1,5 +1,5 @@
 <template>
-    <!-- oi -->
+    <Header />
   <div class="container_livro">
     <h1>Cadastro de livro</h1>
 
@@ -41,7 +41,7 @@
 
       <div class="box menor">
         <label for="ano">Ano de Publicação</label>
-        <input v-model="form.ano" type="number" id="ano" min="1500" placeholder="dd/mm/aaaa"
+        <input v-model="form.ano" type="number" id="ano" min="1500"
           class="form-control data"
           :class="{ 'is-invalid': form.errors.ano }"
         />
@@ -75,6 +75,8 @@
 
 <script setup>
 import { useForm } from '@inertiajs/vue3'
+import Header from '@/Components/Header.vue'
+
 
 const form = useForm({
   titulo: '',
@@ -86,7 +88,7 @@ const form = useForm({
 
 const submit = () => {
   console.log("oi");
-  form.post('/livro/store')
+  form.post('/livro/store');
 
 }
 

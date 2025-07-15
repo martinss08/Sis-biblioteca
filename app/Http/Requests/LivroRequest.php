@@ -22,11 +22,11 @@ class LivroRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'titulo' => ['required', 'min:3', 'max:150', 'unique:livro,titulo'],
+            'titulo' => ['required', 'min:3', 'max:150', 'unique:livros,titulo'],
             'autor' => ['required', 'min:3', 'max:150', 'string'],
-            // 'ibsn' => ['required', 'regex:/^(?:\d{9}[\dXx]|\d{13})$/'],
-            'ano' => ['required', 'after_or_equal:1500', 'before_or_equal:' . date('Y')],
-            'quantidade' => ['required', 'min:3', 'max:100', 'integer']
+            'isbn' => ['required'],
+            'ano' => ['required', 'integer', 'min:1500', 'max:' . date('Y')],
+            'quantidade' => ['required', 'integer', 'min:1', 'max:1000'],
 
         ];
     }
@@ -44,7 +44,7 @@ class LivroRequest extends FormRequest
             'autor.max' => 'O nome do autor não pode ultrapassar :max caracteres.',
             'autor.string' => 'O autor deve ser um texto válido.',
 
-            // 'isbn.required' => 'O ISBN é obrigatório.',
+            'isbn.required' => 'O ISBN é obrigatório.',
             // 'isbn.regex' => 'O ISBN deve conter 10 ou 13 dígitos, podendo terminar com X.',
 
             'ano.required' => 'O ano de publicação é obrigatório.',

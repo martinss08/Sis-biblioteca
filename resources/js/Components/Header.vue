@@ -3,9 +3,10 @@
     <div class="container">
       <h1 class="logo">Sistema de Biblioteca</h1>
       <nav class="nav">
-        <a href="/">Início</a>
+        <a href="/home">Home</a>
         <a href="/livros">Livros</a>
         <a href="/alunos">Alunos</a>
+        <a href="/livro/create">Cadastrar Livro</a>
         <a href="/logout">Sair</a>
       </nav>
     </div>
