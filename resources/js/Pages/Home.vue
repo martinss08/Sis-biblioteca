@@ -14,24 +14,26 @@
         <h1>Catalogo de Livro</h1>
         <div class="container_main">
             <div class="box_card">
-                <!-- @foreach($livros as $livro) -->
-                    <div class="cards" v-for="livro in livros" :key="livros.id">
-                        <div class="card_img">
-                            <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
-                        </div>
-                        <div class="card_title">
-                            <h3>{{ livro.titulo }}</h3>
-                            <p>
-                                <span>descrição:</span>
-                                Lorem ipsum dolor sit amet
-                            </p>
-                        </div>
-                        <div class="card_btn">
-                            <button>Saber mais</button>
-                        </div>
+                <div v-if="livros.length === 0">
+                    <p>Nenhum livro encontrado.</p>
+                </div>
+                <div class="cards" v-for="livro in livros" :key="livro.id">
+                    <!-- <pre>{{ livro }}</pre> -->
+                    <div class="card_img">
+                        <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
                     </div>
-                <!-- @end -->
-                <div class="cards">
+                    <div class="card_title">
+                        <h3>{{ livro.titulo }}</h3>
+                        <p>
+                            <span>descrição:</span>
+                            Lorem ipsum dolor sit amet
+                        </p>
+                    </div>
+                    <div class="card_btn">
+                        <button>Saber mais</button>
+                    </div>
+                </div>
+                 <!-- <div class="cards">
                     <div class="card_img">
                         <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
                     </div>
@@ -120,7 +122,7 @@
                     <div class="card_btn">
                         <button>Saber mais</button>
                     </div>
-                </div>
+                </div>  -->
             </div>
         </div>
         <div class="container_btn">
@@ -133,6 +135,13 @@
 <script setup>
 
 import Header from '@/Components/Header.vue'
+import { usePage } from '@inertiajs/vue3'
+import { computed } from 'vue'
+
+const props = usePage().props
+
+// 'livros' vem do controller Laravel via Inertia
+const livros = computed(() => props.livros ?? [])
 
 </script>
 

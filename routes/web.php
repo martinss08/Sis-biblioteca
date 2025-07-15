@@ -9,7 +9,7 @@ Route::get('/', function () {
     return Inertia::render('Login');
 });
 
-Route::get('/home', function () {
+Route::get('/livro', function () {
     return Inertia::render('Home');
 });
 Route::get('/header', function () {

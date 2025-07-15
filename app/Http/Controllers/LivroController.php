@@ -20,9 +20,10 @@ class LivroController extends Controller
     public function index()
     {
         $livros = $this->model->all();
+        // dd($livros);
 
-        return Inertia::render('/Home', [
-            'livros' => $livros,
+        return Inertia::render('Home', [
+            'livros' => $livros
         ]);
     }
 
@@ -40,7 +41,7 @@ class LivroController extends Controller
         // return response()->json(['status' => 'chegou']);
 
         //Criar aquela mss de sucesso ao criar um livro 
-        return Inertia::render('Home');
+        return redirect('/livro');
     }
 
 
