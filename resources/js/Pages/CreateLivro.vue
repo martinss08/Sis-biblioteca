@@ -62,6 +62,20 @@
       <div class="invalid-feedback" v-if="form.errors.quantidade">
         {{ form.errors.quantidade }}
       </div>
+
+      <!-- Ajustar descrição -->
+      <div class="box">
+        <label for="quantidade">Descrição</label>
+        <input v-model="form.quantidade" type="number" id="quantidade"
+          class="form-control"
+          :class="{ 'is-invalid': form.errors.quantidade }"
+        />
+        <textarea name="" id=""></textarea>
+        
+      </div>
+      <div class="invalid-feedback" v-if="form.errors.quantidade">
+        {{ form.errors.quantidade }}
+      </div>
     
       <div class="btn">
         <button type="submit" :disabled="form.processing" >
