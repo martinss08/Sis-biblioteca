@@ -34,8 +34,8 @@ class LivroController extends Controller
     }
     public function store(LivroRequest $request) 
     {
-        // dd('chegou');
         $dados = $request->validated();
+        // dd($dados);
         
         Livro::create($dados);
         // return response()->json(['status' => 'chegou']);

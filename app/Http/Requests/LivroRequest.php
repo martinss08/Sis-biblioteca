@@ -22,12 +22,12 @@ class LivroRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'titulo' => ['required', 'min:3', 'max:150', 'unique:livros,titulo'],
-            'autor' => ['required', 'min:3', 'max:150', 'string'],
-            'isbn' => ['required'],
-            'ano' => ['required', 'integer', 'min:1500', 'max:' . date('Y')],
+            'titulo'     => ['required', 'min:3', 'max:150', 'unique:livros,titulo'],
+            'autor'      => ['required', 'min:3', 'max:150', 'string'],
+            'isbn'       => ['required'],
+            'ano'        => ['required', 'integer', 'min:1500', 'max:' . date('Y')],
             'quantidade' => ['required', 'integer', 'min:1', 'max:1000'],
-
+            'descricao'  => ['required', 'min:5', 'max:200']
         ];
     }
 
@@ -57,6 +57,10 @@ class LivroRequest extends FormRequest
             'quantidade.integer' => 'A quantidade deve ser um número inteiro.',
             'quantidade.min' => 'A quantidade deve ser no mínimo :min.',
             'quantidade.max' => 'A quantidade deve ser no máximo :max.',
+
+            'descricao.required' => 'O livro precisa de uma descrição ',
+            'descricao.min' => 'A descricao deve ter no minimo :min caracteres.',
+            'descricao.max' => 'A descricao não pode ultrapassar :max caracteres.',
         ];
     }
 }

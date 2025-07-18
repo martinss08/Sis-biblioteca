@@ -23,112 +23,23 @@
                     </div>
 
                     <div class="cards" v-for="livro in livros" :key="livro.id">
-
                         <div class="card_img">
                             <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
                         </div>
                         <div class="card_title">
                             <h3>{{ livro.titulo }}</h3>
-                            <p>
-                                <span>descrição:</span>
-                                Lorem ipsum dolor sit amet
-                            </p>
+
+                            <div class="card_desc">
+                                <p>
+                                    <span>Descrição: </span>
+                                    {{ livro.descricao }}
+                                </p>
+                            </div>
                         </div>
                         <div class="card_btn" @click="abrirDetalhes(livro)">
                             <button>Saber mais</button>
                         </div>
                     </div>
-                    
-                    <!-- <div class="cards">
-                        <div class="card_img">
-                            <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
-                        </div>
-                        <div class="card_title">
-                            <h3>Cavalinho 123</h3>
-                            <p>
-                                <span>descrição:</span>
-                                Lorem ipsum dolor sit amet
-                            </p>
-                        </div>
-                        <div class="card_btn">
-                            <button>Saber mais</button>
-                        </div>
-                    </div>
-                    <div class="cards">
-                        <div class="card_img">
-                            <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
-                        </div>
-                        <div class="card_title">
-                            <h3>Cavalinho 123</h3>
-                            <p>
-                                <span>descrição:</span>
-                                Lorem ipsum dolor sit amet
-                            </p>
-                        </div>
-                        <div class="card_btn">
-                            <button>Saber mais</button>
-                        </div>
-                    </div>
-                    <div class="cards">
-                        <div class="card_img">
-                            <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
-                        </div>
-                        <div class="card_title">
-                            <h3>Cavalinho 123</h3>
-                            <p>
-                                <span>descrição:</span>
-                                Lorem ipsum dolor sit amet
-                            </p>
-                        </div>
-                        <div class="card_btn">
-                            <button>Saber mais</button>
-                        </div>
-                    </div>
-                    <div class="cards">
-                        <div class="card_img">
-                            <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
-                        </div>
-                        <div class="card_title">
-                            <h3>Cavalinho 123</h3>
-                            <p>
-                                <span>descrição:</span>
-                                Lorem ipsum dolor sit amet
-                            </p>
-                        </div>
-                        <div class="card_btn">
-                            <button>Saber mais</button>
-                        </div>
-                    </div>
-                    <div class="cards">
-                        <div class="card_img">
-                            <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
-                        </div>
-                        <div class="card_title">
-                            <h3>Cavalinho 123</h3>
-                            <p>
-                                <span>descrição:</span>
-                                Lorem ipsum dolor sit amet
-                            </p>
-                        </div>
-                        <div class="card_btn">
-                            <button>Saber mais</button>
-                        </div>
-                    </div>
-                    <div class="cards">
-                        <div class="card_img">
-                            <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
-                        </div>
-                        <div class="card_title">
-                            <h3>Cavalinho 123</h3>
-                            <p>
-                                <span>descrição:</span>
-                                Lorem ipsum dolor sit amet
-                            </p>
-                        </div>
-                        <div class="card_btn">
-                            <button>Saber mais</button>
-                        </div>
-                    </div>  -->
                 </div>
             </div>
 
@@ -278,6 +189,20 @@ const abrirDetalhes = (livro) => {
     .card_title p span {
         font-weight: 800;
         padding: 3px;
+    }
+
+    .card_desc {
+        height: 45px;
+        overflow: hidden;
+    }
+    .card_desc p {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
+        line-height: 1.2;
     }
 
     /* .card_btn { */

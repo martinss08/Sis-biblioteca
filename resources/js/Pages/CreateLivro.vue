@@ -65,16 +65,17 @@
 
       <!-- Ajustar descrição -->
       <div class="box">
-        <label for="quantidade">Descrição</label>
-        <input v-model="form.quantidade" type="number" id="quantidade"
+        <label for="descricao">Descrição</label>
+        <textarea 
+          v-model="form.descricao"
+          id="descricao"
           class="form-control"
-          :class="{ 'is-invalid': form.errors.quantidade }"
-        />
-        <textarea name="" id=""></textarea>
+          :class="{ 'is-invalid': form.errors.descricao }"
+        ></textarea>
         
       </div>
-      <div class="invalid-feedback" v-if="form.errors.quantidade">
-        {{ form.errors.quantidade }}
+      <div class="invalid-feedback" v-if="form.errors.descricao">
+        {{ form.errors.descricao }}
       </div>
     
       <div class="btn">
@@ -98,6 +99,7 @@ const form = useForm({
   isbn: '',
   ano: '',
   quantidade: '',
+  descricao: '',
 })
 
 const submit = () => {
@@ -108,7 +110,7 @@ const submit = () => {
 
 //motivo das massagens nao aparecerem. Pois assifim ficava reativa e atualizava quando
 //  vinha validação do back
-const errors = form.errors
+// const errors = form.errors
 </script>
 
 <style>
@@ -183,6 +185,13 @@ const errors = form.errors
       text-shadow: 0 0 0 #978c8c;
     }
 
+    textarea {
+      border: 1px solid #a19d9d79;
+      /* padding-left: 20px; */
+      padding:10px 0 0 20px ;
+      margin-top: 5px;
+    }
+
     input.is-invalid {
       border-bottom: 1px solid #dc3545 !important;
     }
@@ -190,6 +199,9 @@ const errors = form.errors
       font-family: Arial, Helvetica, sans-serif;
       color: #dc3545;
       font-size: .6rem;
+    }
+    textarea.is-invalid {
+      border: 1px solid #dc3545 !important;
     }
      
     .box.menor {
