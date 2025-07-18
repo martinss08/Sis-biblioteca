@@ -195,7 +195,7 @@ const abrirDetalhes = (livro) => {
         height: 45px;
         overflow: hidden;
     }
-    .card_desc p {
+    .card_desc p {              
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -212,10 +212,16 @@ const abrirDetalhes = (livro) => {
         /* border:1px solid black */
     /* } */
     .card_btn button {
-        padding: 6px;
+        /* padding: 6px;
         border: 1px solid #8080807c;
         border-radius: .5rem;
         background-color: #8080807c;
+        cursor: pointer; */
+        margin: 10px;
+        width: 100px;
+        padding: 5px;
+        border: 1px solid gray;
+        border-radius: .5rem;
         cursor: pointer;
     }
 
@@ -302,15 +308,21 @@ const abrirDetalhes = (livro) => {
         margin: 1rem auto;
     }
     .sobre_btn button {
-        width: 130px;
+        /* width: 130px;
         padding: 2px;
         cursor: pointer;
         border: 1px solid #8080807c;
         border-radius: .5rem;
-        background-color: #edae3a;
+        background-color: #edae3a; */
         /* background-color: #f700007c; */
         /* font-size: 1rem; */
-        letter-spacing: 3px;
+        /* letter-spacing: 3px; */
+        margin: 10px;
+        width: 100px;
+        padding: 5px;
+        border: 1px solid gray;
+        border-radius: .5rem;
+        cursor: pointer;
     }
     .sobre_btn .btn_resevar {
         background-color: aquamarine;
