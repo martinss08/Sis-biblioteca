@@ -1,30 +1,37 @@
 <template>
 
-    <div class="container">
-        <div class="box" id="primeira">
+    <div class="container_login">
+        <div class="box" id="primeira" v-if="mostrarCadastro">
             <h1>Cadastrar</h1>
 
-            <form action="">
+            <form id="form_primeira" action="">
                 <div class="caixa">
+                    <label for="name">Name</label>
+                    <input type="text" name="name">
+                </div><div class="caixa">
                     <label for="email">Email</label>
                     <input type="text" name="email">
                 </div>
-                <div class="caixa">
+                <div class="caixa" style=" margin-bottom:1rem ;">
                     <label for="password">Password</label>
                     <input type="password" name="password">
                 </div>
-                <div class="caixa">
+                <!-- <div class="caixa">
                     <label for="tipo">Tipo</label>
                     <input type="text" name="tipo">
-                </div>
+                </div> -->
             </form>
-
             <div class="btn">
                 <button> Cadastrar </button>
             </div>
+            <div>
+                <button class="logs" @click="mostrarCadastro = false">
+                    Fazer login
+                </button>
+            </div>
         </div>
 
-        <div class="box" id="segunda">
+        <div class="box" id="segunda" v-if="!mostrarCadastro">
             <h1>Login</h1>
 
             <form action="">
@@ -38,8 +45,14 @@
                 </div>
             </form>
 
-            <div class="btn">
+            <div class="btn" style=" margin-top:-1.3rem" >
                 <button> Login </button>
+            </div>
+
+            <div>
+                <button class="logs" @click="mostrarCadastro = true">
+                    Fazer Cadastro
+                </button>
             </div>
         </div>
     </div>
@@ -47,19 +60,43 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
+export default {
+  setup() {
+    const mostrarCadastro = ref(false)
+
+    return {
+      mostrarCadastro
+    }
+  }
+}
 
 
 </script>
 
 <style scoped>
 
-    .container {
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container_login {
         display: flex;
         justify-content: center;
-        gap: 20px;
-
         align-items: center;
         flex-direction: column;
+        position: relative;
+        margin: 3rem auto;
+    }
+
+    #primeira, #segunda {
+        height: 400px;
+        width: 340px;
+    }
+    #form_primeira {
+        margin-bottom: 1rem;
+        margin-bottom: -3rem;
     }
 
     .box {
@@ -73,52 +110,50 @@
     }
 
     .box h1 {
-        font-family: Arial, Helvetica, sans-serif;
         text-align: center;
+        padding: 1rem;
     }
 
     form .caixa {
         display: flex;
-        margin: auto;
         width: 80%;
-        /* border: 1px solid black; */
         padding: 7px;
-        /* background: black; */
         flex-direction: column;
         gap: 10px;
     }
 
     form label {
-        font-family: Arial, Helvetica, sans-serif;
         font-weight: 600;
-        /* color: a19d9d79; */
-        /* margin-bottom: -10px; */
     }
     form input {
         border: none;
         text-align: left;
         border: 1px solid #a19d9d79 ;
-        /* border-bottom: 1px solid #a19d9d79 ; */
         height: 34px;
         width: 100%;
         border-radius: .3rem;
+        border: none;
+        border-bottom: 1px solid #a19d9d79 ;
     }
 
     .btn {
-        margin-top: 1.3rem;
+        margin: 2.7rem auto;
         width: 100px;
     }
     .btn button {
-        padding: 7px;
         width:100%;
-        height: 37px;
-        border-radius: .8rem;
-        background-color: #0000db;
-        color: #fff;
-        font-weight: 600;
-        border: none;
-        cursor: pointer;
     }
 
-   
+    .logs {
+        border: none;
+        margin: auto;
+        display: flex;
+        background:transparent;
+        font-size: .9rem;
+        color:#0000db
+    }
+    .logs:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
 </style>
