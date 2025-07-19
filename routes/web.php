@@ -26,3 +26,4 @@ Route::get('/livro/create', [LivroController::class, 'create'])->name('livros.cr
 Route::post('/livro/store', [LivroController::class, 'store']);
 Route::get('/livro/{id}/edit', [livroController::class, 'edit']);
 Route::put('/livro/{id}', [livroController::class, 'update']);
+Route::delete('/livro/{id}', [LivroController::class, 'destroy']);

@@ -25,7 +25,7 @@
                     <div class="cards" v-for="livro in livros" :key="livro.id">
                         
                         <div class="card_img">
-                            <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
+                            <img :src="`https://picsum.photos/150/110?random=${livro.id}`" alt="Imagem aleatória" />
                         </div>
                         <div class="card_title">
                             <h3>{{ livro.titulo }}</h3>
@@ -45,9 +45,23 @@
             </div>
 
             <div class="container_btn">
-                <button>Anterior</button>
-                <button>Proximo</button>
+                <button
+                    :disabled="!props.livros.prev_page_url"
+                    @click="mudarPagina(props.livros.prev_page_url)"
+                    class="px-3 py-1 border rounded"
+                >
+                    Anterior
+                </button>
+
+                <button
+                    :disabled="!props.livros.next_page_url"
+                    @click="mudarPagina(props.livros.next_page_url)"
+                    class="px-3 py-1 border rounded"
+                >
+                    Próximo
+                </button>
             </div>
+            <!-- <p class="text-center mt-2">Página {{ props.livros.current_page }}</p> -->
         </div>
 
         <div class="sobre"  v-if="mostrar">
@@ -72,7 +86,10 @@
                 <!-- <pre>{{ livroSelecionado.id }}</pre> -->
                 <a :href="`/livro/${livroSelecionado.id }/edit`" class="btn_resevar">Reservar livro</a>
                 <a :href="`/livro/${livroSelecionado.id }/edit`" class="btn_editar">Editar</a>
-                <a :href="`/livro/${livroSelecionado.id }/edit`" class="btn_deletar">Deletar</a>
+                <button id="delete" @click="deletar(livroSelecionado.id)">
+                    Deletar
+                </button>
+                <!-- <a :href="" class="btn_deletar">Deletar</a> -->
             </div>
 
         </div>
@@ -84,10 +101,12 @@
 import Header from '@/Components/Header.vue'
 import { usePage } from '@inertiajs/vue3'
 import { computed, ref } from 'vue'
+import { router } from '@inertiajs/vue3'
+defineProps(['livros'])
 
 const props = usePage().props
 // 'livros' vem do controller Laravel via Inertia
-const livros = computed(() => props.livros ?? [])
+const livros = computed(() => props.livros.data ?? [])
 
 const mostrar = ref(false)
 const livroSelecionado = ref(null)
@@ -95,6 +114,22 @@ const livroSelecionado = ref(null)
 const abrirDetalhes = (livro) => {
   livroSelecionado.value = livro
   mostrar.value = true
+}
+
+function deletar(id) {
+  if (confirm('Tem certeza que deseja deletar?')) {
+    router.delete(`/livro/${id}`, {
+      onSuccess: () => {
+        window.location.reload()
+      }
+    })
+    }
+}
+
+function mudarPagina(url) {
+  if (url) {
+    router.visit(url)
+  }
 }
 
 </script>
@@ -265,7 +300,7 @@ const abrirDetalhes = (livro) => {
 
         backdrop-filter: blur(5px);
         /* background-color: rgba(0, 0, 0, 0.2); escurece um pouco o fundo */
-        background-color: rgba(168, 168, 168, 0.2); /* escurece um pouco o fundo */
+        background-color: rgba(233, 228, 228, 0.349); /* escurece um pouco o fundo */
     }
     #close {
         position: absolute;
@@ -308,9 +343,9 @@ const abrirDetalhes = (livro) => {
         width: 500px;
         margin: 1rem auto;
     }
-    .sobre_btn a {
-        /* width: 130px;
-        padding: 2px;
+    .sobre_btn a, #delete {
+        width: 130px;
+       /*  padding: 2px;
         cursor: pointer;
         border: 1px solid #8080807c;
         border-radius: .5rem;
@@ -322,22 +357,14 @@ const abrirDetalhes = (livro) => {
         align-items: center;
         justify-content: center;
         color: black;
+        text-align: center;
         text-decoration: none;
         margin: 10px;
         width: 100px;
-        padding: 5px;
+        /* padding: 5px; */
         border: 1px solid gray;
         border-radius: .5rem;
         cursor: pointer;
-    }
-    .sobre_btn .btn_resevar {
-        background-color: aquamarine;
-    }
-    .sobre_btn .btn_editar {
-        background-color: rgb(135, 247, 24);
-    }
-    .sobre_btn .btn_deletar {
-        background-color:rgb(255, 18, 18);
     }
 
 </style>

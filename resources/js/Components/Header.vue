@@ -6,7 +6,7 @@
         <a href="/livro">Home</a>
         <a href="/livros">Livros</a>
         <a href="/alunos">Alunos</a>
-        <a href="/livro/create">Cadastrar Livro</a>
+        <a href="/livro/create">Cadastro de Livro</a>
         <a href="/logout">Sair</a>
       </nav>
     </div>

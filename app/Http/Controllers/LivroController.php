@@ -19,7 +19,7 @@ class LivroController extends Controller
 
     public function index()
     {
-        $livros = $this->model->all();
+        $livros = $this->model->paginate(10);
         // dd($livros);
 
         return Inertia::render('Home', [
@@ -59,6 +59,13 @@ class LivroController extends Controller
         return redirect('/livro');
     }
 
+    public function destroy($id) {
+        // dd("oi");
+        $livro = $this->model->find($id);
 
+        $livro->delete();
+        
+        return redirect()->back();
+    }
     
 }
