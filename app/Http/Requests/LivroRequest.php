@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LivroRequest extends FormRequest
 {
@@ -22,7 +23,7 @@ class LivroRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'titulo'     => ['required', 'min:3', 'max:150', 'unique:livros,titulo'],
+            'titulo'     => ['required', 'min:3', 'max:150', Rule::unique('livros', 'titulo')->ignore($this->route('livro'))],
             'autor'      => ['required', 'min:3', 'max:150', 'string'],
             'isbn'       => ['required'],
             'ano'        => ['required', 'integer', 'min:1500', 'max:' . date('Y')],

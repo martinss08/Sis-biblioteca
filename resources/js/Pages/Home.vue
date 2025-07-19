@@ -23,6 +23,7 @@
                     </div>
 
                     <div class="cards" v-for="livro in livros" :key="livro.id">
+                        
                         <div class="card_img">
                             <img src="https://picsum.photos/150/110" alt="Imagem aleatória">
                         </div>
@@ -67,11 +68,11 @@
                     </p>
                 </div>
             </div>
-            
             <div class="sobre_btn">
-                <button class="btn_resevar">Reservar livro</button>
-                <button class="btn_editar">Editar</button>
-                <button class="btn_deletar">Deletar</button>
+                <!-- <pre>{{ livroSelecionado.id }}</pre> -->
+                <a :href="`/livro/${livroSelecionado.id }/edit`" class="btn_resevar">Reservar livro</a>
+                <a :href="`/livro/${livroSelecionado.id }/edit`" class="btn_editar">Editar</a>
+                <a :href="`/livro/${livroSelecionado.id }/edit`" class="btn_deletar">Deletar</a>
             </div>
 
         </div>
@@ -307,7 +308,7 @@ const abrirDetalhes = (livro) => {
         width: 500px;
         margin: 1rem auto;
     }
-    .sobre_btn button {
+    .sobre_btn a {
         /* width: 130px;
         padding: 2px;
         cursor: pointer;
@@ -317,6 +318,11 @@ const abrirDetalhes = (livro) => {
         /* background-color: #f700007c; */
         /* font-size: 1rem; */
         /* letter-spacing: 3px; */
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        text-decoration: none;
         margin: 10px;
         width: 100px;
         padding: 5px;

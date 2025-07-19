@@ -12,9 +12,11 @@ Route::get('/', function () {
 Route::get('/livro', function () {
     return Inertia::render('Home');
 });
-Route::get('/header', function () {
-    return Inertia::render('Header');
+Route::get('/edit', function () {
+    return Inertia::render('EditLivro');
 });
+
+
 
 Route::resource('/user', UserController::class);
 // Route::post('/user', [UserController::class, 'create']); 
@@ -22,3 +24,5 @@ Route::resource('/user', UserController::class);
 Route::resource('/livro', LivroController::class);
 Route::get('/livro/create', [LivroController::class, 'create'])->name('livros.create');
 Route::post('/livro/store', [LivroController::class, 'store']);
+Route::get('/livro/{id}/edit', [livroController::class, 'edit']);
+Route::put('/livro/{id}', [livroController::class, 'update']);

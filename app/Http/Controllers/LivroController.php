@@ -30,17 +30,32 @@ class LivroController extends Controller
     public function create()
     {
         return Inertia::render('CreateLivro');
-
     }
     public function store(LivroRequest $request) 
     {
         $dados = $request->validated();
-        // dd($dados);
-        
-        Livro::create($dados);
-        // return response()->json(['status' => 'chegou']);
 
+        Livro::create($dados);
         //Criar aquela mss de sucesso ao criar um livro 
+        return redirect('/livro');
+    }
+
+    public function edit($id) 
+    {
+        $livro = $this->model->find($id);
+
+        return Inertia::render('EditLivro', [
+            'livro' => $livro
+        ]);
+    }
+    public function update(LivroRequest $request, $id)
+    {
+        $dados = $request->validated();
+
+        $livro = $this->model->find($id);
+
+        $livro->update($dados);
+
         return redirect('/livro');
     }
 
