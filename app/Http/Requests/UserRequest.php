@@ -22,29 +22,29 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user.name'     => ['required', 'min:3', 'max:100', 'unique:user,name'],
-            'user.email'    => ['required', 'email', 'unique:user,email'],
-            'user.password' => ['required', 'min:6'],
-            'user.tipo'     => ['required']
+            'name'     => ['required', 'min:3', 'max:100', 'unique:users,name'],
+            'email'    => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'min:6'],
+            // 'tipo'     => ['required']
         ];
     }
 
     public function messages()
     {
         return [
-            'user.required' => 'O campo nome deve ser preenchido',
-            'user.min'      => 'O campo nome deve ter no minimo 3 caracteres',
-            'user.max'      => 'O campo nome deve ter no maximo 100 caracteres',
-            'user.max'      => 'O este nome ja esta em uso',
+            'name.required' => 'O campo nome deve ser preenchido',
+            'name.min'      => 'O campo nome deve ter no minimo 3 caracteres',
+            'name.max'      => 'O campo nome deve ter no maximo 100 caracteres',
+            'name.max'      => 'O este nome ja esta em uso',
 
-            'user.email' => 'O campo deve ser preenchido',
-            'user.email' => 'Deve ser passado um email valido',
-            'user.email' => 'O email ja esta em uso',
+            'email.required' => 'O campo deve ser preenchido',
+            'email.email' => 'Deve ser passado um email valido',
+            'email.unique' => 'O email ja esta em uso',
 
-            'user.password' => 'O campo deve ser corretamente preenchido',
-            'user.min'      => 'Deve ter no minimo 6 caracteres',
+            'password.required' => 'O campo deve ser corretamente preenchido',
+            'password.min'      => 'Deve ter no minimo 6 caracteres',
             
-            'user.tipo'     => 'O campo deve ser corretamente preenchido',
+            // 'user.tipo'     => 'O campo deve ser corretamente preenchido',
         ];
 
     }

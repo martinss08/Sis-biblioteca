@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -22,15 +23,13 @@ class UserController extends Controller
         dd($user);
     }
 
-            public function store(UserRequest $request) 
-            {
-                $dados = $request->validated();
+    public function store(UserRequest $request) 
+    {
+        // dd($request);
+        $dados = $request->validated();
 
-                $user = $this->model->create($dados);
+        User::create($dados);
 
-                dd([
-                    'user' => $user,
-                    'message' => 'creado'
-                ]);
-            }
+        return redirect('/');
+    }
 }

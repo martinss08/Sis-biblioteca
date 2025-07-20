@@ -4,26 +4,50 @@
         <div class="box" id="primeira" v-if="mostrarCadastro">
             <h1>Cadastrar</h1>
 
-            <form id="form_primeira" action="">
+            <form id="form_primeira" @submit.prevent="submit">
                 <div class="caixa">
                     <label for="name">Name</label>
-                    <input type="text" name="name">
-                </div><div class="caixa">
-                    <label for="email">Email</label>
-                    <input type="text" name="email">
+                    <input type="text" name="name" v-model="form.name"
+                    class="form-control"
+                    :class="{ 'is-invalid': form.errors.name }"
+                    >
                 </div>
+                <div class="invalid-feedback" v-if="form.errors.name">
+                    {{ form.errors.name }}
+                </div>
+
+
+                <div class="caixa">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" v-model="form.email"
+                    class="form-control"
+                    :class="{ 'is-invalid': form.errors.email }"
+                    >
+                </div>
+                <div class="invalid-feedback" v-if="form.errors.email">
+                    {{ form.errors.email }}
+                </div>
+
                 <div class="caixa" style=" margin-bottom:1rem ;">
                     <label for="password">Password</label>
-                    <input type="password" name="password">
+                    <input type="password" name="password" v-model="form.password"
+                    class="form-control"
+                    :class="{ 'is-invalid': form.errors.password }"
+                    >
+                </div>
+                <div class="invalid-feedback" v-if="form.errors.password">
+                    {{ form.errors.password }}
                 </div>
                 <!-- <div class="caixa">
                     <label for="tipo">Tipo</label>
                     <input type="text" name="tipo">
                 </div> -->
+
+                 <div class="btn">
+                    <button type="submit"> Cadastrar </button>
+                </div>
             </form>
-            <div class="btn">
-                <button> Cadastrar </button>
-            </div>
+           
             <div>
                 <button class="logs" @click="mostrarCadastro = false">
                     Fazer login
@@ -59,21 +83,29 @@
 
 </template>
 
-<script>
+<script setup>
+import { useForm } from '@inertiajs/vue3'
 import { ref } from 'vue'
 
-export default {
-  setup() {
-    const mostrarCadastro = ref(false)
+const mostrarCadastro = ref(false)
 
-    return {
-      mostrarCadastro
+const form = useForm({
+  name: '',
+  email: '',
+  password: ''
+})
+
+const submit = () => {
+    console.log('oi')
+  form.post('/user', {
+    onSuccess: () => {
+      form.reset()
+      mostrarCadastro.value = false
     }
-  }
+  })
 }
-
-
 </script>
+
 
 <style scoped>
 
@@ -90,30 +122,24 @@ export default {
         margin: 3rem auto;
     }
 
-    #primeira, #segunda {
-        height: 400px;
-        width: 340px;
-    }
-    #form_primeira {
-        margin-bottom: 1rem;
-        margin-bottom: -3rem;
-    }
-
     .box {
         display: flex;
         flex-direction: column;
-        width: 300px;
+        min-height: 400px;
+        width: 340px;
         border: 1px solid #a19d9d79;
         border-radius: 1rem;
         box-shadow: 0px 0px 5px  #00000056;
         padding: 10px;
     }
-
     .box h1 {
         text-align: center;
         padding: 1rem;
     }
 
+    #form_primeira {
+        margin-top: 1.3rem;
+    }
     form .caixa {
         display: flex;
         width: 80%;
@@ -135,9 +161,16 @@ export default {
         border: none;
         border-bottom: 1px solid #a19d9d79 ;
     }
+    input.is-invalid {
+      border-bottom: 1px solid #dc3545 !important;
+    }
+    .invalid-feedback {
+      color: #dc3545;
+      font-size: .6rem;
+    }
 
     .btn {
-        margin: 2.7rem auto;
+        margin: 1.1rem auto 2.2rem;
         width: 100px;
     }
     .btn button {

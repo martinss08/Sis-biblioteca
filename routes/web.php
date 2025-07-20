@@ -18,8 +18,8 @@ Route::get('/edit', function () {
 
 
 
-Route::resource('/user', UserController::class);
-// Route::post('/user', [UserController::class, 'create']); 
+// Route::resource('/user', UserController::class);
+Route::post('/user', [UserController::class, 'store'])->name('user.store'); 
 
 Route::resource('/livro', LivroController::class);
 Route::get('/livro/create', [LivroController::class, 'create'])->name('livros.create');
