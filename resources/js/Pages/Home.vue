@@ -3,7 +3,7 @@
     <div class="box-bsc">
         <div class="busca">
             <form class="form" action="">
-                <input class="intTxt" type="text" placeholder="Buscar um livro">
+                <input class="intTxt" type="text" placeholder="Buscar um livro" name="search">
                 <button class="intBtn" type="submit">
                     <i class="bi bi-search"></i>
                 </button>

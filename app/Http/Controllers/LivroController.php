@@ -17,11 +17,13 @@ class LivroController extends Controller
         $this->model = $model;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $livros = $this->model->paginate(10);
-        // dd($livros);
+        $busca = $request->input('search');
 
+        $livros = $this->model->where('titulo', 'like', '%' .$busca .'%')
+            ->paginate(10);
+        
         return Inertia::render('Home', [
             'livros' => $livros
         ]);
