@@ -99,9 +99,10 @@
 <script setup>
 
 import Header from '@/Components/Header.vue'
-import { usePage } from '@inertiajs/vue3'
+import { router, usePage } from '@inertiajs/vue3'
 import { computed, ref } from 'vue'
-import { router } from '@inertiajs/vue3'
+// import { router } from '@inertiajs/vue3'
+import Swal from 'sweetalert2'
 defineProps(['livros'])
 
 const props = usePage().props
@@ -117,13 +118,21 @@ const abrirDetalhes = (livro) => {
 }
 
 function deletar(id) {
-  if (confirm('Tem certeza que deseja deletar?')) {
-    router.delete(`/livro/${id}`, {
-      onSuccess: () => {
-        window.location.reload()
-      }
-    })
+  Swal.fire({
+    title: 'Confirmar',
+    text: 'Deseja realmente excluir?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sim, excluir',
+  }).then(result => {
+    if (result.isConfirmed) {
+      router.delete(`/livro/${id}`, {
+        onSuccess: () => {
+            router.visit('/livro')
+        }
+      })
     }
+  })
 }
 
 function mudarPagina(url) {
