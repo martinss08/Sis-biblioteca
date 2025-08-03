@@ -99,14 +99,10 @@
 <script setup>
 
 import Header from '@/Components/Header.vue'
-import { router, usePage } from '@inertiajs/vue3'
+import { usePage } from '@inertiajs/vue3'
 import { computed, ref } from 'vue'
-// import { router } from '@inertiajs/vue3'
-import Swal from 'sweetalert2'
-defineProps(['livros'])
 
 const props = usePage().props
-// 'livros' vem do controller Laravel via Inertia
 const livros = computed(() => props.livros.data ?? [])
 
 const mostrar = ref(false)
@@ -149,7 +145,7 @@ function mudarPagina(url) {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
+        /* font-family: Arial, Helvetica, sans-serif; */
     }
 
     .main h1 {
@@ -173,7 +169,9 @@ function mudarPagina(url) {
         border-radius: .6rem;
     }
     .form .intTxt {
+        border: none;
         width: 210px;
+        height: 30px;
         border-radius:.8rem;
         margin-right:10px ;
     }
@@ -208,7 +206,8 @@ function mudarPagina(url) {
 
     }
     .cards {
-        width: 200px;
+        width: 224px;
+        height: 319px;
         padding:10px;
         border: 1px solid #8080807c;
         border-radius: .5rem;
@@ -223,6 +222,9 @@ function mudarPagina(url) {
         border: 1px solid #8080807c;
         /* box-shadow: 0px 0px 2px #0000008f; */
         border-radius: .5rem;
+    }
+    .card_title {
+        height: 126px;
     }
     .card_title h3 {
         text-align: center;
