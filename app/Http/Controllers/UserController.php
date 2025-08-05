@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -18,18 +19,30 @@ class UserController extends Controller
 
     public function index()
     {
-        $user = $this->model->all();
+        $users = $this->model->all();
+        // dd($users);
 
-        dd($user);
+        return Inertia::render('User/ListaUser', [
+            "users" => $users
+        ]);
+    }
+
+    public function create()
+    {
+        return Inertia::render('Auth/Register');
     }
 
     public function store(UserRequest $request) 
     {
-        // dd($request);
         $dados = $request->validated();
 
-        User::create($dados);
+        $this->model->create($dados);
 
-        return redirect('/');
+        return redirect()->route('user.index');
+    }
+
+    public function destroy($id)
+    {
+        dd('chegou');
     }
 }
