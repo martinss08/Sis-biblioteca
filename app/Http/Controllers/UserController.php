@@ -20,7 +20,6 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->model->all();
-        // dd($users);
 
         return Inertia::render('User/ListaUser', [
             "users" => $users
@@ -41,8 +40,35 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
+    public function edit($id) 
+    {
+        $user = $this->model->findOrFail($id);
+
+        return Inertia::render('Auth/Register', [
+            "user" => $user
+        ]);
+    }
+    public function update($id, UserRequest $request ) 
+    {
+        $user = $this->model->findOrFail($id);
+
+        $dados = $request->validated();
+
+        if (empty($dados['password'])) {
+            unset($dados['password']);
+        }
+
+        $user->update($dados);
+ 
+        return redirect()->route('user.index');
+    } 
+
     public function destroy($id)
     {
-        dd('chegou');
+        $user = $this->model->findOrFail($id);
+
+        $user->delete();
+
+        return redirect()->route('user.index');
     }
 }

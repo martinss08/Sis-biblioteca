@@ -7,7 +7,7 @@
                 Criar Usuarios
             </a>
         </div>
-        <div class="col-10 text-center mx-auto border p-4 rounded">
+        <div class="text-center mx-auto border p-4 rounded">
 
             <table class="table">
             <thead>
@@ -24,7 +24,10 @@
                     <td>{{ user.name }} </td>
                     <td>{{ user.email }} </td>
                     <td class=" d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary">Editar</button>
+                        <button type="button" class="btn btn-secondary"
+                            @click="editar(user.id)">
+                            Editar
+                        </button>
                         <button type="button" class="btn btn-danger"
                             @click="deletar(user.id)">
                             Deletar
@@ -42,6 +45,10 @@ import { router } from '@inertiajs/vue3'
 import Swal from 'sweetalert2'
 
 const { users } = defineProps(['users'])
+
+function editar(id) {
+    router.get(`/user/${id}/edit`)
+}
 
 function deletar(id) {
   Swal.fire({

@@ -1,8 +1,16 @@
 <template>
-    <div style="display: flex; flex-direction: column; align-items: center; margin-top:3rem;">
-        <h1>Criar usuario</h1>
-        <div id="box">
-            <form @submit.prevent="submit">
+    <div class="d-flex align-items-center justify-content-center mt-5 flex-column">
+        <h1> {{ props.user ? 'Editar usuario' : 'Cadastrar usuario'  }} </h1>
+
+        <div class="col-6 ">
+            <a href="/user" class="btn btn-secondary">
+                <- Voltar
+            </a>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-center mt-5 rounded" id="box">
+            <form class="d-flex flex-column" 
+            @submit.prevent="submit">
                 <div class="caixa">
                     <label for="name">Name</label>
                     <input type="text" name="name" v-model="form.name">
@@ -15,7 +23,9 @@
                     <label for="password">Password</label>
                     <input type="password" name="password" v-model="form.password">
                 </div>
-                <button type="submit"> Cadastrar </button>
+                <button type="submit"> 
+                    {{ props.user ? 'Editar' : 'Cadastrar' }}    
+                </button>
             </form>
         </div>
     </div>
@@ -23,16 +33,27 @@
 
 <script setup>
 import { useForm } from '@inertiajs/vue3';
+
+const props = defineProps({
+    user: {
+        type: Object,
+        default: null
+    }
+})
  
 const form = useForm({
-    name: '',
-    email: '',
-    password: ''
+    name: props.user?.name || '',
+    email: props.user?.email || '',
+    password: props.user?.password || ''
 })
 
 function submit() {
-    console.log('clik');
-    form.post('/user')
+    if(props.user) {
+        console.log("oi")
+        form.put(`/user/${props.user.id}`)
+    } else {
+        form.post('/user')
+    }
 }
 
 </script>
@@ -41,20 +62,8 @@ function submit() {
 
     #box {
         border:1px solid #8080805e;
-        border-radius: .7rem;
-        padding: 10px;
         width: 390px;
         height: 330px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: .5rem;
-
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        
     }
     .caixa {
         display: flex;
@@ -73,7 +82,6 @@ function submit() {
     }
     button {
         margin-top: 2.4rem;
-        border: 1px solid black;
         border: 1px solid #8080805e;
         height: 38px;
         border-radius: .4rem;

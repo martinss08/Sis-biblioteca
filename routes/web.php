@@ -13,9 +13,16 @@ Route::get('/login', function () {
     return Inertia::render('Auth/Login');
 });
 
+
+Route::get('/edit', function () {
+    return Inertia::render('Profile/Edit');
+});
+
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::get('/user/create', [UserController::class, 'create']);
 Route::post('/user', [UserController::class, 'store']);
+Route::get('/user/{id}/edit', [UserController::class, 'edit']);
+Route::put('/user/{id}', [UserController::class, 'update']);
 Route::delete('/user/{id}', [UserController::class, 'destroy']);
 
 Route::get('/dashboard', function () {
