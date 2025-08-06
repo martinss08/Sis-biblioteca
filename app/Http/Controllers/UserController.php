@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = $this->model->all();
+        $users = $this->model->paginate(6);
 
         return Inertia::render('User/ListaUser', [
             "users" => $users
