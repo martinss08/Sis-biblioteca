@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\UserRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,11 +20,15 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = $this->model->paginate(6);
+        $nome = Auth::user()->name;
 
+        $users = $this->model->paginate(6);
+        
         return Inertia::render('User/ListaUser', [
-            "users" => $users
+            "users" => $users,
+            "logado" =>$nome
         ]);
+        // dd($nome);
     }
 
     public function create()

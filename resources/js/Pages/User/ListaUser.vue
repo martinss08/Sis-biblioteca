@@ -50,6 +50,8 @@
                 Próximo
             </button>
       </div>       
+
+      <p>{{ logado }}</p>
     </div>
 </template>
 
@@ -58,7 +60,7 @@ import Header from '@/Components/Header.vue'
 import { router } from '@inertiajs/vue3'
 import Swal from 'sweetalert2'
 
-const { users } = defineProps(['users'])             
+const { users, logado } = defineProps(['users', 'logado'])             
 
 function editar(id) {
     router.get(`/user/${id}/edit`)

@@ -61,7 +61,7 @@
                     Próximo
                 </button>
             </div>
-            <!-- <p class="text-center mt-2">Página {{ props.livros.current_page }}</p> -->
+            
         </div>
 
         <div class="sobre"  v-if="mostrar">

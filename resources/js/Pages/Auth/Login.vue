@@ -25,21 +25,22 @@
                 </button>
                 </div>
             </form>
+            
+            <a href="/user/create"> Fazer cadastro </a>
         </div>
     </div>
 </template>
 
 <script setup>
-import { router, userForm } from '@inertiajs/vue3'
-// import { router } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 
-const form = userForm({
+const form = useForm({
     email: '',
     password: ''
 })
 
 function login() {
-    router.post('/login')
+    form.post('/login')
 }
 
 </script>

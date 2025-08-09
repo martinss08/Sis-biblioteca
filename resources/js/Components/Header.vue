@@ -3,17 +3,26 @@
     <div class="container">
       <h1 class="logo">Sistema de Biblioteca</h1>
       <nav class="nav">
-        <a href="/livro">Home</a>
-        <a href="/livros">Livros</a>
-        <a href="/alunos">Alunos</a>
-        <a href="/livro/create">Cadastro de Livro</a>
-        <a href="/logout">Sair</a>
+        <a href="/">Home</a>
+
+        <!-- <a href="/alunos">Alunos</a> -->
+        <a v-if="props.auth?.user" href="/livro/create">Cadastro de Livro</a>
+        <a v-if="props.auth?.user" href="/livros">Meus Livros</a>
+        <a v-if="props.auth?.user" @click.prevent="logout" href="#">Sair</a>
+        <a v-else href="/login">Login</a>
       </nav>
     </div>
   </header>
 </template>
 
 <script setup>
+import { router, usePage } from '@inertiajs/vue3'
+
+const props = usePage().props
+
+const logout = () => {
+  router.post('/logout')
+}
 </script>
 
 <style scoped>
